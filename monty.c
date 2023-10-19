@@ -3,35 +3,30 @@
 struct externVar ext = {NULL, 0, 0};
 
 /**
-  * main - Takes in arguments and attempts to interpret monty code
-  *
-  * @argc: number of arguments
-  * @argv: array of string arguments
-  * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure
-  */
+ * main - Takes in arguments and attempts to interpret Monty code
+ *
+ * @argc: Number of arguments
+ * @argv: Array of string arguments
+ * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure
+ */
 int main(int argc, char **argv)
 {
-	char *fileVar;
-	fileVar = argv[1];
-	stack_t *stack = NULL;
-	size_t bufsize;
-
 	if (argc != 2)
 	{
 		dprintf(STDERR_FILENO, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
-	}
+    }
 
 	unsigned int line_no = 0;
+	stack_t *stack = NULL;
+	size_t bufsize;
 
-	ext.fds = fopen(fileVar, "r");
+	ext.fds = fopen(argv[1], "r");
 	if (ext.fds == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", fileVar);
+		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-
-	return (EXIT_SUCCESS);
 
 	while (getline(&ext.bfr, &bufsize, ext.fds) != -1)
 	{
@@ -41,7 +36,7 @@ int main(int argc, char **argv)
 
 	memory_clear(stack);
 
-	return (line_no);
+	return (EXIT_SUCCESS);
 }
 
 /**
