@@ -1,34 +1,61 @@
 #include "monty.h"
 
-struct externVar ext = {NULL, 0, 0};
+struct global_var glo = {NULL, 0, 0};
 
 /**
- * main - Takes in arguments and attempts to interpret Monty code
- *
- * @argc: Number of arguments
- * @argv: Array of string arguments
- * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure
- */
+  * main - Takes in arguments and attempts to interpret monty code
+  *
+  * @argc: number of arguments
+  * @argv: array of string arguments
+  * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure
+  */
 int main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
 		dprintf(STDERR_FILENO, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
-    }
+	}
 
+	open_file(argv[1]);
+
+	return (EXIT_SUCCESS);
+}
+
+/**
+  * open_file - opens the file and feeds it into the command function
+  *
+  * @file_name: file name that was given
+  * Return: 0 on success, exit on failure
+  */
+int open_file(char *file_name)
+{
 	unsigned int line_no = 0;
-	stack_t *stack = NULL;
-	size_t bufsize;
 
-	ext.fds = fopen(argv[1], "r");
-	if (ext.fds == NULL)
+	glo.fp = fopen(file_name, "r");
+	if (glo.fp == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", file_name);
 		exit(EXIT_FAILURE);
 	}
 
-	while (getline(&ext.bfr, &bufsize, ext.fds) != -1)
+	line_no = line_iterate(line_no);
+
+	return (0);
+}
+
+/**
+  * line_iterate - iterates through lines for commands
+  *
+  * @line_no: line number
+  * Return: line number where function ends
+  */
+unsigned int line_iterate(unsigned int line_no)
+{
+	stack_t *stack = NULL;
+	size_t bufsize;
+
+	while (getline(&glo.buffer, &bufsize, glo.fp) != -1)
 	{
 		line_no++;
 		opcode(&stack, line_no);
@@ -36,7 +63,7 @@ int main(int argc, char **argv)
 
 	memory_clear(stack);
 
-	return (EXIT_SUCCESS);
+	return (line_no);
 }
 
 /**
@@ -71,7 +98,7 @@ void opcode(stack_t **stack, unsigned int line_no)
 	int i = 0;
 	char *token;
 
-	token = strtok(ext.bfr, " \n\r\t");
+	token = strtok(glo.buffer, " \n\r\t");
 	if (token == NULL || *token == '#')
 		return;
 
