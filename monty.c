@@ -17,9 +17,6 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	//open_file(argv[1]);
-
-	//return (EXIT_SUCCESS);
 
 	unsigned int line_no = 0;
 
@@ -32,7 +29,7 @@ int main(int argc, char **argv)
 
 	line_no = line_iterate(line_no);
 
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 /**
