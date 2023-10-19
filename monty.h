@@ -8,22 +8,22 @@
 #include <string.h>
 
 /**
- * struct externVar - structure to use with buffer and file descriptor
- * @bfr: Memory buffer to store getline
- * @form: form to represent stack or queue
- * @fds: file descriptor for our file
+ * struct global_var - variable to use buffer, file descriptor, and mode
+ * @buffer: buffer to store getline of opcode
+ * @mode: mode to represent stack or queue
+ * @fp: file descriptor for our file
  *
- * Descritpion: enables the utilization and release of specific variables employed in
+ * Descritpion: allows for use and free of certain variables used
  * in stack, queues, LIFO, FIFO Holberton project
  */
-struct	externVar 
+struct global_var
 {
-	char *bfr;
-	int form;
-	FILE *fds;
+	char *buffer;
+	int mode;
+	FILE *fp;
 };
 
-extern struct externVar ext;
+extern struct global_var glo;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -55,38 +55,38 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-//monty.c
-int open_file(char *file_name);
+/* monty.c functions */
+int open_file(char *);
 unsigned int line_iterate(unsigned int);
 void opcode(stack_t **, unsigned int);
 
-//memory.c functions
+/* memory.c functions */
 stack_t *malloc_stack(stack_t *);
 void free_stack(stack_t *);
 void memory_clear(stack_t *);
 
-//opbasic.c
+/* opbasic.c functions */
 void push(stack_t **, unsigned int);
 void pall(stack_t **, unsigned int);
 void pint(stack_t **, unsigned int);
 void pop(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
 
-// opmore.c
+/* opmore.c functions */
 void swap(stack_t **, unsigned int);
 void add(stack_t **, unsigned int);
 void sub(stack_t **, unsigned int);
 void divi(stack_t **, unsigned int);
 void mul(stack_t **, unsigned int);
 
-// opthree.c
+/* opthree.c functions */
 void mod(stack_t **, unsigned int);
 void pchar(stack_t **, unsigned int);
 void pstr(stack_t **, unsigned int);
 void rotl(stack_t **, unsigned int);
 void stoq(stack_t **, unsigned int);
 
-//opfour.c
+/* opfour.c functions */
 void rotr(stack_t **, unsigned int);
 void stac(stack_t **, unsigned int);
 void queue(stack_t **, unsigned int);

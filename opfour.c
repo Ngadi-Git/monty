@@ -29,7 +29,7 @@ void rotr(stack_t **stack, unsigned int line_number)
 }
 
 /**
-  * queue - changes form/mode for stack vs queue
+  * queue - changes mode for stack vs queue
   *
   * @stack: first element of the stack
   * @line_number: current line number
@@ -39,11 +39,11 @@ void queue(stack_t **stack, unsigned int line_number)
 {
 	(void) line_number;
 	(void) stack;
-	ext.form = 1;
+	glo.mode = 1;
 }
 
 /**
-  * stac - changes form/mode for the stack vs queue
+  * stac - changes mode for stack vs queue
   *
   * @stack: first element of the stack
   * @line_number: current line number
@@ -53,7 +53,7 @@ void stac(stack_t **stack, unsigned int line_number)
 {
 	(void) line_number;
 	(void) stack;
-	ext.form = 0;
+	glo.mode = 0;
 }
 
 /**
@@ -67,7 +67,7 @@ void push_help(stack_t **stack, stack_t *new_element)
 {
 	stack_t *tmp;
 
-	if (ext.form == 0)
+	if (glo.mode == 0)
 	{
 		tmp = *stack;
 		new_element->next = tmp;
