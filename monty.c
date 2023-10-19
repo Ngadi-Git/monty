@@ -1,6 +1,6 @@
 #include "monty.h"
 
-struct global_var glo = {NULL, 0, 0};
+struct externVar ext = {NULL, 0, 0};
 
 /**
   * main - Takes in arguments and attempts to interpret monty code
@@ -32,8 +32,8 @@ int open_file(char *file_name)
 {
 	unsigned int line_no = 0;
 
-	glo.fp = fopen(file_name, "r");
-	if (glo.fp == NULL)
+	ext.fds = fopen(file_name, "r");
+	if (ext.fds == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", file_name);
 		exit(EXIT_FAILURE);
@@ -55,7 +55,7 @@ unsigned int line_iterate(unsigned int line_no)
 	stack_t *stack = NULL;
 	size_t bufsize;
 
-	while (getline(&glo.buffer, &bufsize, glo.fp) != -1)
+	while (getline(&ext.bfr, &bufsize, ext.fds) != -1)
 	{
 		line_no++;
 		opcode(&stack, line_no);
@@ -98,7 +98,7 @@ void opcode(stack_t **stack, unsigned int line_no)
 	int i = 0;
 	char *token;
 
-	token = strtok(glo.buffer, " \n\r\t");
+	token = strtok(ext.bfr, " \n\r\t");
 	if (token == NULL || *token == '#')
 		return;
 
