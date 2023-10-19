@@ -13,6 +13,8 @@ int main(int argc, char **argv)
 {
 	char *fileVar;
 	fileVar = argv[1];
+	stack_t *stack = NULL;
+	size_t bufsize;
 
 	if (argc != 2)
 	{
@@ -29,21 +31,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	line_no = line_iterate(line_no);
-
 	return (EXIT_SUCCESS);
-}
-
-/**
-  * line_iterate - iterates through lines for commands
-  *
-  * @line_no: line number
-  * Return: line number where function ends
-  */
-unsigned int line_iterate(unsigned int line_no)
-{
-	stack_t *stack = NULL;
-	size_t bufsize;
 
 	while (getline(&ext.bfr, &bufsize, ext.fds) != -1)
 	{
