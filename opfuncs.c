@@ -17,7 +17,7 @@ int file_open(char *file_n)
 		exit(EXIT_FAILURE);
 	}
 
-	line = line_iterate(line);
+	line = iterate_ln(line);
 
 	return (0);
 }
@@ -28,19 +28,19 @@ int file_open(char *file_n)
   * @line_no: line number
   * Return: line number where function ends
   */
-unsigned int line_iterate(unsigned int line_no)
+unsigned int iterate_ln(unsigned int ln)
 {
 	stack_t *stack = NULL;
 	size_t bufsize;
 
 	while (getline(&glo.buffer, &bufsize, glo.fp) != -1)
 	{
-		line_no++;
-		opcode(&stack, line_no);
+		ln++;
+		opcode(&stack, ln);
 	}
 
 	memory_clear(stack);
 
-	return (line_no);
+	return (ln);
 }
 
