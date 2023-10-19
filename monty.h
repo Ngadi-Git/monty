@@ -56,7 +56,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /* monty.c functions */
-int open_file(char *);
+int file_open(char *file_n);
 unsigned int line_iterate(unsigned int);
 void opcode(stack_t **, unsigned int);
 

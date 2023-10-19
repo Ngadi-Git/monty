@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	open_file(argv[1]);
+	file_open(argv[1]);
 
 	return (EXIT_SUCCESS);
 }

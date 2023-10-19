@@ -6,18 +6,18 @@
   * @file_name: file name that was given
   * Return: 0 on success, exit on failure
   */
-int open_file(char *file_name)
+int file_open(char *file_n)
 {
-	unsigned int line_no = 0;
+	unsigned int line = 0;
 
-	glo.fp = fopen(file_name, "r");
+	glo.fp = fopen(file_n, "r");
 	if (glo.fp == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", file_name);
+		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", file_n);
 		exit(EXIT_FAILURE);
 	}
 
-	line_no = line_iterate(line_no);
+	line = line_iterate(line);
 
 	return (0);
 }
