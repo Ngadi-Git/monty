@@ -48,7 +48,7 @@ void free_stack(stack_t *head)
 void memory_clear(stack_t *stack)
 {
 	free_stack(stack);
-	if (glo.buffer)
-		free(glo.buffer);
-	fclose(glo.fp);
+	if (ext.bfr)
+		free(ext.bfr);
+	fclose(ext.fds);
 }
