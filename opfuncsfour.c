@@ -39,7 +39,7 @@ void queue(stack_t **stack, unsigned int line_number)
 {
 	(void) line_number;
 	(void) stack;
-	glo.mode = 1;
+	ext.mode = 1;
 }
 
 /**
@@ -53,7 +53,7 @@ void stac(stack_t **stack, unsigned int line_number)
 {
 	(void) line_number;
 	(void) stack;
-	glo.mode = 0;
+	ext.mode = 0;
 }
 
 /**
@@ -67,7 +67,7 @@ void push_help(stack_t **stack, stack_t *new_element)
 {
 	stack_t *tmp;
 
-	if (glo.mode == 0)
+	if (ext.mode == 0)
 	{
 		tmp = *stack;
 		new_element->next = tmp;

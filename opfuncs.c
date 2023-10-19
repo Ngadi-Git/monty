@@ -10,8 +10,8 @@ int file_open(char *file_n)
 {
 	unsigned int line = 0;
 
-	glo.fp = fopen(file_n, "r");
-	if (glo.fp == NULL)
+	ext.fp = fopen(file_n, "r");
+	if (ext.fp == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", file_n);
 		exit(EXIT_FAILURE);
@@ -33,7 +33,7 @@ unsigned int iterate_ln(unsigned int ln)
 	stack_t *stack = NULL;
 	size_t bufsize;
 
-	while (getline(&glo.buffer, &bufsize, glo.fp) != -1)
+	while (getline(&ext.bfr, &bufsize, ext.fp) != -1)
 	{
 		ln++;
 		opcode(&stack, ln);

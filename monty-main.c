@@ -1,9 +1,9 @@
 #include "monty.h"
 
-struct global_var glo = {NULL, 0, 0};
+struct extern_scope ext = {NULL, 0, 0};
 
 /**
-  * main - Takes in arguments and attempts to interpret monty code
+  * main - utilizes in arguments and attempts to interpret monty code
   *
   * @argc: number of arguments
   * @argv: array of string arguments
@@ -54,7 +54,7 @@ void opcode(stack_t **stack, unsigned int line_no)
 	int i = 0;
 	char *token;
 
-	token = strtok(glo.buffer, " \n\r\t");
+	token = strtok(ext.bfr, " \n\r\t");
 	if (token == NULL || *token == '#')
 		return;
 

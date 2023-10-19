@@ -8,22 +8,22 @@
 #include <string.h>
 
 /**
- * struct global_var - variable to use buffer, file descriptor, and mode
- * @buffer: buffer to store getline of opcode
+ * struct extern_scope - variable to use buffer, file descriptor, and mode
+ * @bfrr: buffer to store getline of opcode
  * @mode: mode to represent stack or queue
  * @fp: file descriptor for our file
  *
  * Descritpion: allows for use and free of certain variables used
  * in stack, queues, LIFO, FIFO Holberton project
  */
-struct global_var
+struct extern_scope
 {
-	char *buffer;
+	char *bfr;
 	int mode;
 	FILE *fp;
 };
 
-extern struct global_var glo;
+extern struct extern_scope ext;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
