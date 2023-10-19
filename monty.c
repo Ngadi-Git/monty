@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 	}
 
 
-	unsigned int line_no = 0;
+	unsigned int line_no;
 
 	ext.fds = fopen(argv[1], "r");
 	if (ext.fds == NULL)
@@ -27,19 +27,6 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	line_no = line_iterate(line_no);
-
-	return (EXIT_SUCCESS);
-}
-
-/**
-  * line_iterate - iterates through lines for commands
-  *
-  * @line_no: line number
-  * Return: line number where function ends
-  */
-unsigned int line_iterate(unsigned int line_no)
-{
 	stack_t *stack = NULL;
 	size_t bufsize;
 
