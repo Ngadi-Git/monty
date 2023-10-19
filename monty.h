@@ -55,38 +55,38 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/* monty.c functions */
+//monty.c
 int open_file(char *file_name);
 unsigned int line_iterate(unsigned int);
 void opcode(stack_t **, unsigned int);
 
-/* memory.c functions */
+//memory.c functions
 stack_t *malloc_stack(stack_t *);
 void free_stack(stack_t *);
 void memory_clear(stack_t *);
 
-/* opbasic.c functions */
+//opbasic.c
 void push(stack_t **, unsigned int);
 void pall(stack_t **, unsigned int);
 void pint(stack_t **, unsigned int);
 void pop(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
 
-/* opmore.c functions */
+// opmore.c
 void swap(stack_t **, unsigned int);
 void add(stack_t **, unsigned int);
 void sub(stack_t **, unsigned int);
 void divi(stack_t **, unsigned int);
 void mul(stack_t **, unsigned int);
 
-/* opthree.c functions */
+// opthree.c
 void mod(stack_t **, unsigned int);
 void pchar(stack_t **, unsigned int);
 void pstr(stack_t **, unsigned int);
 void rotl(stack_t **, unsigned int);
 void stoq(stack_t **, unsigned int);
 
-/* opfour.c functions */
+//opfour.c
 void rotr(stack_t **, unsigned int);
 void stac(stack_t **, unsigned int);
 void queue(stack_t **, unsigned int);

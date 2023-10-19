@@ -17,25 +17,16 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	open_file(argv[1]);
+	//open_file(argv[1]);
 
-	return (EXIT_SUCCESS);
-}
+	//return (EXIT_SUCCESS);
 
-/**
-  * open_file - opens the file and feeds it into the command function
-  *
-  * @file_name: file name that was given
-  * Return: 0 on success, exit on failure
-  */
-int open_file(char *file_name)
-{
 	unsigned int line_no = 0;
 
-	ext.fds = fopen(file_name, "r");
+	ext.fds = fopen(argv[1], "r");
 	if (ext.fds == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", file_name);
+		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
