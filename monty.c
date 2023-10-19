@@ -11,6 +11,9 @@ struct externVar ext = {NULL, 0, 0};
   */
 int main(int argc, char **argv)
 {
+	char *fileVar;
+	fileVar = argv[1];
+
 	if (argc != 2)
 	{
 		dprintf(STDERR_FILENO, "USAGE: monty file\n");
@@ -19,10 +22,10 @@ int main(int argc, char **argv)
 
 	unsigned int line_no = 0;
 
-	ext.fds = fopen(argv[1], "r");
+	ext.fds = fopen(fileVar, "r");
 	if (ext.fds == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", fileVar);
 		exit(EXIT_FAILURE);
 	}
 
